@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "about": "关于我",
+    "projects": "我的项目",
+    "blog": "博客"
+  },
+  "hero": {
+    "title": "前端开发工程师",
+    "greeting": "你好，我是",
+    "name": "张三",
+    "description": "热爱创造的前端开发工程师，致力于构建美观、高效且用户友好的网页应用。具有 3 年的前端开发经验，精通 React、Vue 等现代前端框架。",
+    "blog": "我的博客",
+    "github": "GitHub",
+    "experience": "✨ 3年经验",
+    "fullstack": "🚀 全栈开发"
+  },
+  "details": {
+    "title": "详细信息",
+    "education": {
+      "title": "学习经历",
+      "bachelor": "学士",
+      "master": "硕士"
+    },
+    "experience": {
+      "title": "工作经历"
+    },
+    "research": {
+      "title": "研究方向"
+    },
+    "techStack": {
+      "title": "技术栈",
+      "frontend": "前端",
+      "backend": "后端",
+      "tools": "工具"
+    }
+  },
+  "projects": {
+    "title": "我的项目",
+    "viewProject": "查看项目",
+    "repositories": "仓库信息",
+    "screenshots": "示例图片",
+    "tags": "标签"
+  },
+  "footer": {
+    "copyright": "© 2026 Aidan Rao. All rights reserved.",
+    "language": "语言"
+  },
+  "theme": {
+    "light": "浅色模式",
+    "dark": "深色模式"
+  }
+}

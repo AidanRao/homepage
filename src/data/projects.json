@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "joinup",
+    "description": "2025年软件工程课程作业，面向学生的交友组队微信小程序，集成自动签到和博雅管理功能。",
+    "link": "https://joinup-admin.aidanrao.top",
+    "icon": "/images/projects/joinup.png",
+    "screenshots": [
+      "/images/projects/joinup/create-team.png",
+      "/images/projects/joinup/chat-1.png",
+      "/images/projects/joinup/chat-2.png",
+      "/images/projects/joinup/boya.png",
+      "/images/projects/joinup/admin.png"
+    ],
+    "tags": ["微服务", "小程序", "Java"],
+    "repositories": [
+      { "name": "管理员前端仓库", "url": "https://github.com/AidanRao/joinup-admin-dashboard" },
+      { "name": "后端仓库", "url": "https://github.com/AidanRao/joinup-server" },
+      { "name": "小程序仓库", "url": "https://github.com/YuXiaosen0/joinup" },
+      { "name": "智慧教室爬虫", "url": "https://github.com/AidanRao/Iclass-Crawler"}
+    ]
+  },
+  {
+    "id": 2,
+    "name": "服务器管理套件",
+    "description": "基于 Python 和 Go 开发的服务器管理套件，支持服务器监控、部署等功能。",
+    "link": "https://devops.aidanrao.top",
+    "icon": "/images/projects/server-suite.png",
+    "screenshots": [
+      "/images/projects/server-suite-1.png",
+      "/images/projects/server-suite-2.png"
+    ],
+    "tags": ["Python", "Go", "消息队列"],
+    "repositories": [
+      { "name": "Agent 仓库", "url": "https://github.com/AidanRao/devops-agent" },
+      { "name": "Server 仓库", "url": "https://github.com/AidanRao/devops-control-plane" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "BUAA ClassHopper",
+    "description": "为北航课程签到开发的移动端应用程序，支持一键签到，不用到教室也能完成课程签到。",
+    "link": "https://buaa-classhopper.aidanrao.top",
+    "icon": "/images/projects/buaa-classhopper.jpeg",
+    "screenshots": [
+      "/images/projects/buaa-classhopper/example1.png",
+      "/images/projects/buaa-classhopper/example2.png",
+      "/images/projects/buaa-classhopper/rate-monitor.png",
+      "/images/projects/buaa-classhopper/home.png"
+    ],
+    "tags": ["安卓", "爬虫"],
+    "repositories": [
+      { "name": "安卓端仓库", "url": "https://github.com/AidanRao/BUAA-ClassHopper" },
+      { "name": "后端仓库", "url": "https://github.com/AidanRao/joinup-server" }
+    ]
+  }
+]

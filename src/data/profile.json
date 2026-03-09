@@ -1,0 +1,79 @@
+{
+  "name": {
+    "zh": "Aidan",
+    "en": "Aidan"
+  },
+  "avatar": "/images/avatar.webp",
+  "education": {
+    "zh": [
+      {
+        "period": "2022-2026",
+        "degree": "计算机科学与技术",
+        "school": "北京航空航天大学",
+        "college": "计算机学院",
+        "type": "本科",
+        "logo": "/logos/Beihang_University_Logo.svg"
+      }
+    ],
+    "en": [
+      {
+        "period": "2017-2021",
+        "degree": "Computer Science",
+        "school": "Beihang University",
+        "college": "School of Computer Science and Engineering",
+        "type": "Bachelor",
+        "logo": "/logos/Beihang_University_Logo.svg"
+      }
+    ]
+  },
+  "experience": {
+    "zh": [
+      {
+        "period": "2025.05-2025.11",
+        "role": "后端开发工程师",
+        "company": "梅赛德斯-奔驰",
+        "description": "负责奔驰电商系统和车机权限系统的研发工作。",
+        "logo": "https://asset.prod.cms.mercedes-benz.com.cn/dots-oneweb/Global-Header-Footer/MB_star_n_2_D_3_Cweb_8912783fcd.svg",
+        "link": "https://www.mercedes-benz.com.cn"
+      },
+      {
+        "period": "2025.11-至今",
+        "role": "Agent开发工程师",
+        "company": "字节跳动",
+        "description": "参与飞书低代码平台的测试开发工作，通过搭建 Agent 进行测试用例生成和产物评估验证。",
+        "logo": "https://www.hongshan.com/wp-content/uploads/sites/9/2022/11/Bytedance.png",
+        "link": "https://www.bytedance.com"
+      }
+    ],
+    "en": [
+      {
+        "period": "2025.05-2025.11",
+        "role": "Backend Developer",
+        "company": "Mercedes-Benz",
+        "description": "Responsible for backend development of Mercedes-Benz e-commerce system and car machine license management system.",
+        "logo": "https://asset.prod.cms.mercedes-benz.com.cn/dots-oneweb/Global-Header-Footer/MB_star_n_2_D_3_Cweb_8912783fcd.svg",
+        "link": "https://www.mercedes-benz.com"
+      },
+      {
+        "period": "2025.11-Present",
+        "role": "Agent Developer",
+        "company": "ByteDance",
+        "description": "Participated in testing development of ByteDance low-code platform, setting up Agent to generate test cases and verify product artifacts.",
+        "logo": "https://www.hongshan.com/wp-content/uploads/sites/9/2022/11/Bytedance.png",
+        "link": "https://www.bytedance.com"
+      }
+    ]
+  },
+  "researchTopics": {
+    "zh": [
+      "软件工程",
+      "Agent",
+      "后端"
+    ],
+    "en": [
+      "Software Engineering",
+      "Agent",
+      "Backend"
+    ]
+  }
+}
