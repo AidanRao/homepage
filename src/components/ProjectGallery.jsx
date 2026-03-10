@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
 
-const ProjectGallery = ({ images = [], onImageClick, theme = 'light' }) => {
+const ProjectGallery = ({ images = [], onImageClick, theme = 'light', fullHeight = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const isDark = theme === 'dark'
 
@@ -23,22 +23,24 @@ const ProjectGallery = ({ images = [], onImageClick, theme = 'light' }) => {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className={`flex flex-col gap-4 ${fullHeight ? 'h-full' : ''}`}>
       {/* Main Image Container */}
-      <div className="relative group w-full aspect-video rounded-2xl overflow-hidden border border-black/5 dark:border-white/5 bg-slate-100 dark:bg-slate-900/50 shadow-sm">
+      <div className={`relative group w-full rounded-2xl overflow-hidden border border-black/5 dark:border-white/5 bg-slate-100 dark:bg-slate-900/50 shadow-sm ${
+        fullHeight ? 'flex-1 min-h-0' : 'aspect-video'
+      }`}>
         
-        {/* Blurred Background Layer (for portrait images) */}
+        {/* Blurred Background Layer */}
         <div 
-          className="absolute inset-0 bg-cover bg-center blur-xl opacity-50 scale-110 transition-all duration-700"
+          className="absolute inset-0 bg-cover bg-center blur-2xl opacity-40 scale-110 transition-all duration-700"
           style={{ backgroundImage: `url(${images[currentIndex]})` }}
         />
         
         {/* Main Image */}
-        <div className="absolute inset-0 flex items-center justify-center p-4">
+        <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
           <img 
             src={images[currentIndex]} 
             alt={`Screenshot ${currentIndex + 1}`} 
-            className="w-full h-full object-contain relative z-10 transition-transform duration-500 hover:scale-[1.02] cursor-pointer drop-shadow-xl"
+            className="w-full h-full object-contain relative z-10 transition-transform duration-500 hover:scale-[1.01] cursor-pointer drop-shadow-2xl"
             onClick={() => onImageClick && onImageClick(images[currentIndex])}
           />
         </div>

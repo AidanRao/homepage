@@ -29,13 +29,14 @@ const ProjectModal = ({ project, onClose, onImageClick, theme = 'light' }) => {
         </button>
 
         {/* Left Column: Media */}
-        <div className={`lg:w-7/12 relative ${isDark ? 'bg-black' : 'bg-slate-100'}`}>
+        <div className={`lg:w-7/12 relative flex flex-col ${isDark ? 'bg-black' : 'bg-slate-50'}`}>
           {project.screenshots && project.screenshots.length > 0 ? (
-            <div className="w-full h-full p-4 md:p-8 flex items-center justify-center">
+            <div className="w-full h-full flex flex-col p-4">
               <ProjectGallery 
                 images={project.screenshots}
                 onImageClick={onImageClick}
                 theme={theme}
+                fullHeight={true}
               />
             </div>
           ) : (
