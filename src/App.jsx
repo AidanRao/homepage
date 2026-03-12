@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Github, ExternalLink, BookOpen, Code2, Sparkles, Zap } from 'lucide-react'
+import { Github, ExternalLink, BookOpen, Code2, Sparkles, MapPin, Mail, Linkedin } from 'lucide-react'
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext'
 import profileData from './data/profile.json'
 import ProjectsPage from './ProjectsPage'
@@ -48,318 +48,256 @@ function AppContent() {
   const education = profileData.education[language] || []
   const experience = profileData.experience[language] || []
   const researchTopics = profileData.researchTopics[language] || []
-
-  const techStack = {
-    frontend: ["React", "Vue", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS"],
-    backend: ["Node.js", "Express", "MongoDB", "PostgreSQL"],
-    tools: ["Git", "Webpack", "Vite", "Docker", "Figma"]
-  }
+  const hero = profileData.hero[language] || {}
 
   if (!mounted) return null
 
   return (
     <Router>
-      <div className={`min-h-screen transition-colors duration-500 ${
+      <div className={`min-h-screen transition-colors duration-500 font-sans ${
         theme === 'dark' 
-          ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900'
-          : theme === 'light'
-          ? 'bg-gradient-to-br from-slate-50 via-white to-blue-50'
-          : 'bg-gradient-to-br from-slate-50 via-white to-blue-50'
+          ? 'bg-zinc-950 text-zinc-100'
+          : 'bg-zinc-50 text-zinc-900'
       }`}>
         {/* 顶部导航栏 */}
         <Header theme={theme} toggleTheme={toggleTheme} />
 
         <Routes>
           <Route path="/" element={
-            <main className="relative z-10 pt-24">
-              {/* 背景装饰 */}
-              <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className={`absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl animate-float transition-colors duration-500 ${
-                  theme === 'dark' ? 'bg-blue-500/10' : 'bg-blue-400/20'
-                }`} />
-                <div className={`absolute top-40 right-20 w-96 h-96 rounded-full blur-3xl animate-float animation-delay-200 transition-colors duration-500 ${
-                  theme === 'dark' ? 'bg-purple-500/10' : 'bg-purple-400/20'
-                }`} />
-                <div className={`absolute bottom-20 left-1/3 w-80 h-80 rounded-full blur-3xl animate-float animation-delay-400 transition-colors duration-500 ${
-                  theme === 'dark' ? 'bg-pink-500/10' : 'bg-pink-400/20'
-                }`} />
-              </div>
+            <main className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+              {/* Hero Section - Centered & Minimal */}
+              <section className="text-center mb-24 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-6 ${
+                  theme === 'dark' ? 'bg-zinc-900 text-zinc-400' : 'bg-zinc-200 text-zinc-600'
+                }`}>
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                  {hero.title}
+                </div>
+                
+                <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+                  {hero.greeting} <span className="text-blue-600 dark:text-blue-500">{profileData.name[language]}</span>
+                </h1>
+                
+                <p className={`text-xl sm:text-2xl max-w-2xl mx-auto leading-relaxed mb-8 ${
+                  theme === 'dark' ? 'text-zinc-400' : 'text-zinc-600'
+                }`}>
+                  {hero.description}
+                </p>
 
-              {/* Hero Section */}
-              <section id="about" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
-                <div className="max-w-6xl mx-auto w-full">
-                  <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* 左侧：个人信息 */}
-                    <div className={`space-y-6 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
-                        theme === 'dark'
-                          ? 'bg-blue-900/30 text-blue-400'
-                          : 'bg-blue-100 text-blue-600'
-                      }`}>
-                        <Sparkles className="w-4 h-4" />
-                        <span>{t('hero.title')}</span>
-                      </div>
-                      
-                      <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-                        <span className={theme === 'dark' ? 'text-white' : 'text-slate-900'}>{t('hero.greeting')}</span>
-                        <br />
-                        <span className="gradient-text">{t('hero.name')}</span>
-                      </h1>
-                      
-                      <p className={`text-lg max-w-lg leading-relaxed transition-colors duration-300 ${
-                        theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
-                      }`}>
-                        {t('hero.description')}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-4 pt-4">
-                        <a
-                          href="https://blog.example.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:-translate-y-1"
-                        >
-                          <BookOpen className="w-5 h-5" />
-                          {t('hero.blog')}
-                        </a>
-                        <a
-                          href="https://github.com/AidanRao"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium hover-lift transition-colors duration-300 ${
-                            theme === 'dark'
-                              ? 'bg-slate-800 text-slate-200 border border-slate-700'
-                              : 'bg-white text-slate-700 border border-slate-200'
-                          }`}
-                        >
-                          <Github className="w-5 h-5" />
-                          {t('hero.github')}
-                        </a>
-                      </div>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <a
+                    href="https://github.com/AidanRao"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all hover:scale-105 ${
+                      theme === 'dark'
+                        ? 'bg-white text-zinc-900 hover:bg-zinc-200'
+                        : 'bg-zinc-900 text-white hover:bg-zinc-800'
+                    }`}
+                  >
+                    <Github className="w-5 h-5" />
+                    GitHub
+                  </a>
+                  <a
+                    href="https://blog.aidanrao.top"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all hover:scale-105 border ${
+                      theme === 'dark'
+                        ? 'border-zinc-800 hover:bg-zinc-900 text-zinc-300'
+                        : 'border-zinc-200 hover:bg-zinc-100 text-zinc-700'
+                    }`}
+                  >
+                    <BookOpen className="w-5 h-5" />
+                    Blog
+                  </a>
+                </div>
+              </section>
+
+              {/* Grid Layout for Content */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
+                
+                {/* Experience - Spans 7 cols */}
+                <div className={`md:col-span-7 p-8 rounded-3xl transition-all hover:shadow-xl ${
+                  theme === 'dark' ? 'bg-zinc-900/50 hover:bg-zinc-900' : 'bg-white hover:bg-zinc-50 shadow-sm'
+                }`}>
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500">
+                      <Code2 className="w-6 h-6" />
                     </div>
-
-                    {/* 右侧：头像卡片 */}
-                    <div className={`flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                      <div className="relative">
-                        {/* 装饰圆环 */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full blur-2xl opacity-30 animate-pulse-slow" />
-                        
-                        {/* 头像卡片 */}
-                        <div className="relative w-80 h-80 rounded-3xl glass-card p-2 glow-border">
-                          <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center">
-                            <span className="text-8xl font-bold text-white">R</span>
+                    <h2 className="text-2xl font-bold">{t('details.experience.title')}</h2>
+                  </div>
+                  <div className="space-y-8">
+                    {experience.map((exp, index) => (
+                      <div key={index} className="relative pl-8 border-l border-zinc-200 dark:border-zinc-800">
+                        <div className={`absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full ring-4 ${
+                          theme === 'dark' ? 'bg-purple-500 ring-zinc-900' : 'bg-purple-600 ring-white'
+                        }`} />
+                        <div className="flex justify-between items-start gap-4">
+                          <div className="flex-1">
+                            <span className={`text-xs font-mono mb-1 block ${
+                              theme === 'dark' ? 'text-zinc-500' : 'text-zinc-400'
+                            }`}>{exp.period}</span>
+                            <h3 className="text-lg font-bold">{exp.role}</h3>
+                            
+                            {exp.link ? (
+                              <a 
+                                href={exp.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`text-sm font-medium mb-2 hover:underline inline-block ${
+                                  theme === 'dark' ? 'text-zinc-300 hover:text-purple-400' : 'text-zinc-600 hover:text-purple-600'
+                                }`}
+                              >
+                                {exp.company}
+                              </a>
+                            ) : (
+                              <div className={`text-sm font-medium mb-2 ${
+                                theme === 'dark' ? 'text-zinc-300' : 'text-zinc-600'
+                              }`}>{exp.company}</div>
+                            )}
+                            
+                            <p className={`text-sm leading-relaxed ${
+                              theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'
+                            }`}>{exp.description}</p>
                           </div>
                           
-                          {/* 浮动标签 */}
-                          <div className={`absolute -top-4 -right-4 px-4 py-2 rounded-full shadow-lg text-sm font-medium animate-float transition-colors duration-300 ${
-                            theme === 'dark'
-                              ? 'bg-slate-800 text-slate-200 border border-slate-700'
-                              : 'bg-white text-slate-700 border border-slate-200'
-                          }`}>
-                            {t('hero.experience')}
-                          </div>
-                          <div className={`absolute -bottom-4 -left-4 px-4 py-2 rounded-full shadow-lg text-sm font-medium animate-float animation-delay-200 transition-colors duration-300 ${
-                            theme === 'dark'
-                              ? 'bg-slate-800 text-slate-200 border border-slate-700'
-                              : 'bg-white text-slate-700 border border-slate-200'
-                          }`}>
-                            {t('hero.fullstack')}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Details Section */}
-              <section className="py-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-7xl mx-auto">
-                  <h2 className="text-4xl font-bold text-center mb-16">
-                    <span className="gradient-text">{t('details.title')}</span>
-                  </h2>
-                  
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {/* 学习经历 */}
-                    <div className={`glass-card rounded-2xl p-8 hover-lift glow-border transition-colors duration-300 ${
-                      theme === 'dark' ? 'border-slate-700/50' : 'border-white/20'
-                    }`}>
-                      <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${
-                        theme === 'dark' ? 'text-white' : 'text-slate-900'
-                      }`}>
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                          <BookOpen className="w-5 h-5 text-white" />
-                        </div>
-                        {t('details.education.title')}
-                      </h3>
-                      <div className="space-y-6">
-                        {education.map((edu, index) => (
-                          <div key={index} className="relative pl-6 border-l-2 border-blue-500 dark:border-blue-400">
-                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 dark:bg-blue-400 border-4 border-white dark:border-slate-800" />
-                            <div className="flex items-start justify-between gap-4">
-                              <div className="flex-1">
-                                <div className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-1">{edu.period}</div>
-                                <h4 className={`text-lg font-semibold ${
-                                  theme === 'dark' ? 'text-white' : 'text-slate-900'
-                                }`}>{edu.degree}</h4>
-                                <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>{edu.school}</p>
-                                {edu.college && (
-                                  <p className={`text-sm mt-1 ${
-                                    theme === 'dark' ? 'text-slate-500' : 'text-slate-500'
-                                  }`}>{edu.college}</p>
-                                )}
-                                <span className={`inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium transition-colors duration-300 ${
-                                  theme === 'dark'
-                                    ? 'bg-blue-900/30 text-blue-400'
-                                    : 'bg-blue-100 text-blue-600'
-                                }`}>
-                                  {edu.type}
-                                </span>
-                              </div>
-                              {edu.logo && (
-                                <img 
-                                  src={edu.logo} 
-                                  alt={edu.school} 
-                                  className="w-12 h-12 object-contain flex-shrink-0"
-                                />
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* 工作经历 */}
-                    <div className={`glass-card rounded-2xl p-8 hover-lift glow-border transition-colors duration-300 ${
-                      theme === 'dark' ? 'border-slate-700/50' : 'border-white/20'
-                    }`}>
-                      <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${
-                        theme === 'dark' ? 'text-white' : 'text-slate-900'
-                      }`}>
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
-                          <Code2 className="w-5 h-5 text-white" />
-                        </div>
-                        {t('details.experience.title')}
-                      </h3>
-                      <div className="space-y-6">
-                        {experience.map((exp, index) => (
-                          <div key={index} className="relative pl-6 border-l-2 border-purple-500 dark:border-purple-400">
-                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-purple-500 dark:bg-purple-400 border-4 border-white dark:border-slate-800" />
-                            <div className="flex items-start justify-between gap-4">
-                              <div className="flex-1">
-                                <div className="text-sm text-purple-600 dark:text-purple-400 font-medium mb-1">{exp.period}</div>
-                                <h4 className={`text-lg font-semibold ${
-                                  theme === 'dark' ? 'text-white' : 'text-slate-900'
-                                }`}>{exp.role}</h4>
-                                {exp.link ? (
-                                  <a 
-                                    href={exp.link} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className={`font-medium hover:underline inline-block mt-1 ${
-                                      theme === 'dark' ? 'text-slate-400 hover:text-purple-400' : 'text-slate-600 hover:text-purple-600'
-                                    }`}
-                                  >
-                                    {exp.company}
-                                  </a>
-                                ) : (
-                                  <p className={`font-medium mt-1 ${
-                                    theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
-                                  }`}>{exp.company}</p>
-                                )}
-                                <p className={`text-sm mt-2 ${
-                                  theme === 'dark' ? 'text-slate-500' : 'text-slate-500'
-                                }`}>{exp.description}</p>
-                              </div>
-                              {exp.logo && (
-                                <img 
-                                  src={exp.logo} 
-                                  alt={exp.company} 
-                                  className="w-12 h-12 object-contain flex-shrink-0"
-                                />
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* 研究方向 */}
-                    <div className={`glass-card rounded-2xl p-8 hover-lift glow-border transition-colors duration-300 ${
-                      theme === 'dark' ? 'border-slate-700/50' : 'border-white/20'
-                    }`}>
-                      <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${
-                        theme === 'dark' ? 'text-white' : 'text-slate-900'
-                      }`}>
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center">
-                          <Sparkles className="w-5 h-5 text-white" />
-                        </div>
-                        {t('details.research.title')}
-                      </h3>
-                      <div className="flex flex-wrap gap-3">
-                        {researchTopics.map((topic, index) => (
-                          <span
-                            key={index}
-                            className={`px-4 py-2 rounded-full text-sm font-medium border hover:scale-105 transition-transform cursor-default ${
-                              theme === 'dark'
-                                ? 'bg-gradient-to-r from-pink-900/30 to-orange-900/30 text-pink-300 border-pink-800'
-                                : 'bg-gradient-to-r from-pink-100 to-orange-100 text-pink-700 border-pink-200'
-                            }`}
-                          >
-                            {topic}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* 技术栈 */}
-                    <div className={`glass-card rounded-2xl p-8 hover-lift glow-border transition-colors duration-300 ${
-                      theme === 'dark' ? 'border-slate-700/50' : 'border-white/20'
-                    }`}>
-                      <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${
-                        theme === 'dark' ? 'text-white' : 'text-slate-900'
-                      }`}>
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-                          <Zap className="w-5 h-5 text-white" />
-                        </div>
-                        {t('details.techStack.title')}
-                      </h3>
-                      <div className="space-y-4">
-                        {Object.entries(techStack).map(([category, techs]) => (
-                          <div key={category}>
-                            <h4 className={`text-sm font-medium uppercase tracking-wider mb-2 ${
-                              theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                          {exp.logo && (
+                            <div className={`w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden flex items-center justify-center ${
+                              theme === 'dark' ? 'bg-zinc-800' : 'bg-white shadow-sm border border-zinc-100'
                             }`}>
-                              {category === 'frontend' ? t('details.techStack.frontend') : category === 'backend' ? t('details.techStack.backend') : t('details.techStack.tools')}
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                              {techs.map((tech, index) => (
-                                <span
-                                  key={index}
-                                  className={`px-3 py-1 rounded-lg text-sm transition-colors cursor-default ${
-                                    theme === 'dark'
-                                      ? 'bg-slate-700 text-slate-300 hover:bg-blue-900/30 hover:text-blue-400'
-                                      : 'bg-slate-100 text-slate-700 hover:bg-blue-100 hover:text-blue-600'
-                                  }`}
-                                >
-                                  {tech}
-                                </span>
-                              ))}
+                              <img 
+                                src={exp.logo} 
+                                alt={exp.company} 
+                                className="w-10 h-10 object-contain"
+                              />
                             </div>
-                          </div>
-                        ))}
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
-              </section>
 
-              {/* Footer */}
-              <Footer theme={theme} />
+                {/* Education - Spans 5 cols */}
+                <div className={`md:col-span-5 p-8 rounded-3xl transition-all hover:shadow-xl ${
+                  theme === 'dark' ? 'bg-zinc-900/50 hover:bg-zinc-900' : 'bg-white hover:bg-zinc-50 shadow-sm'
+                }`}>
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
+                      <BookOpen className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-2xl font-bold">{t('details.education.title')}</h2>
+                  </div>
+                  <div className="space-y-6">
+                    {education.map((edu, index) => (
+                      <div key={index} className={`p-4 rounded-2xl transition-colors ${
+                        theme === 'dark' ? 'bg-zinc-800/50 hover:bg-zinc-800' : 'bg-zinc-50 hover:bg-zinc-100'
+                      }`}>
+                        <div className="flex justify-between items-start gap-4">
+                          <div className="flex-1">
+                            <div className="flex justify-between items-start mb-2">
+                              <div>
+                                <h3 className="font-bold">{edu.school}</h3>
+                                <div className="flex items-center gap-2 mt-1">
+                                  <p className={`text-sm font-medium ${
+                                    theme === 'dark' ? 'text-zinc-300' : 'text-zinc-700'
+                                  }`}>{edu.degree}</p>
+                                  <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${
+                                    theme === 'dark'
+                                      ? 'bg-zinc-700 text-zinc-300'
+                                      : 'bg-zinc-200 text-zinc-600'
+                                  }`}>
+                                    {edu.type}
+                                  </span>
+                                </div>
+                              </div>
+                              <span className={`text-xs px-2 py-1 rounded-full whitespace-nowrap ${
+                                theme === 'dark' ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-700'
+                              }`}>{edu.period}</span>
+                            </div>
+                            
+                            {edu.college && (
+                              <p className={`text-xs mt-1 ${
+                                theme === 'dark' ? 'text-zinc-500' : 'text-zinc-500'
+                              }`}>{edu.college}</p>
+                            )}
+                          </div>
+                          {edu.logo && (
+                            <div className={`w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden flex items-center justify-center ${
+                              theme === 'dark' ? 'bg-zinc-800' : 'bg-white shadow-sm border border-zinc-100'
+                            }`}>
+                              <img 
+                                src={edu.logo} 
+                                alt={edu.school} 
+                                className="w-10 h-10 object-contain"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* About / Bio - Spans full width on mobile, 8 cols on desktop */}
+                <div className={`md:col-span-8 p-8 rounded-3xl transition-all hover:shadow-xl ${
+                  theme === 'dark' ? 'bg-zinc-900/50 hover:bg-zinc-900' : 'bg-white hover:bg-zinc-50 shadow-sm'
+                }`}>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
+                      <Sparkles className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-2xl font-bold">{t('details.research.title')}</h2>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {researchTopics.map((topic, index) => (
+                      <span
+                        key={index}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                          theme === 'dark'
+                            ? 'bg-zinc-800 text-zinc-300 hover:text-blue-400'
+                            : 'bg-zinc-100 text-zinc-700 hover:text-blue-600'
+                        }`}
+                      >
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Connect / Contact - Spans 4 cols */}
+                <div className={`md:col-span-4 p-8 rounded-3xl flex flex-col justify-between transition-all hover:shadow-xl ${
+                  theme === 'dark' ? 'bg-zinc-900/50 hover:bg-zinc-900' : 'bg-white hover:bg-zinc-50 shadow-sm'
+                }`}>
+                  <div>
+                    <h2 className="text-2xl font-bold mb-2">Connect</h2>
+                    <p className={`text-sm mb-6 ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                      Let's build something together.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                     <a href="mailto:chenxuanrao.work@gmail.com" className="flex items-center gap-3 hover:text-blue-500 transition-colors">
+                        <div className={`p-2 rounded-full ${theme === 'dark' ? 'bg-zinc-800' : 'bg-zinc-100'}`}>
+                          <Mail className="w-4 h-4" />
+                        </div>
+                        <span className="font-medium">Email Me</span>
+                     </a>
+                     <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-full ${theme === 'dark' ? 'bg-zinc-800' : 'bg-zinc-100'}`}>
+                          <MapPin className="w-4 h-4" />
+                        </div>
+                        <span className={`font-medium ${theme === 'dark' ? 'text-zinc-300' : 'text-zinc-700'}`}>Beijing</span>
+                     </div>
+                  </div>
+                </div>
+
+              </div>
             </main>
           } />
           <Route path="/projects" element={<ProjectsPage theme={theme} />} />
         </Routes>
+        <Footer theme={theme} />
       </div>
     </Router>
   )

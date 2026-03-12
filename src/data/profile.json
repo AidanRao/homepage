@@ -3,6 +3,18 @@
     "zh": "Aidan",
     "en": "Aidan"
   },
+  "hero": {
+    "zh": {
+      "title": "全栈 & AI 工程师",
+      "greeting": "你好，我是",
+      "description": "计算机专业在读，除了折腾后端，最近沉迷于 AI Agent。喜欢捣鼓些有趣的小玩意儿，想看看 AI 和软件工程能撞出什么火花。"
+    },
+    "en": {
+      "title": "Full Stack & AI Engineer",
+      "greeting": "Hello, I'm",
+      "description": "CS student. Started with backend, now diving deep into AI Agents. I love building smart bots that can think and do stuff, exploring the cool mix of robust systems and AI magic."
+    }
+  },
   "avatar": "/images/avatar.webp",
   "education": {
     "zh": [
@@ -17,7 +29,7 @@
     ],
     "en": [
       {
-        "period": "2017-2021",
+        "period": "2022-2026",
         "degree": "Computer Science",
         "school": "Beihang University",
         "college": "School of Computer Science and Engineering",

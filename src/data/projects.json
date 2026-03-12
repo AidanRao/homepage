@@ -27,8 +27,8 @@
     "link": "https://devops.aidanrao.top",
     "icon": "/images/projects/server-suite.png",
     "screenshots": [
-      "/images/projects/server-suite-1.png",
-      "/images/projects/server-suite-2.png"
+      "/images/projects/joinup/admin.png",
+      "/images/projects/joinup/admin.png"
     ],
     "tags": ["Python", "Go", "消息队列"],
     "repositories": [

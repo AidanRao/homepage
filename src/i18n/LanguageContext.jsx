@@ -20,8 +20,10 @@ export const LanguageProvider = ({ children }) => {
   }, [])
 
   const toggleLanguage = (lang) => {
-    setLanguage(lang)
-    localStorage.setItem('language', lang)
+    if (translations[lang]) {
+      setLanguage(lang)
+      localStorage.setItem('language', lang)
+    }
   }
 
   const t = (key) => {

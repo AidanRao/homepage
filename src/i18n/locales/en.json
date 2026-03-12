@@ -4,16 +4,6 @@
     "projects": "My Projects",
     "blog": "Blog"
   },
-  "hero": {
-    "title": "Frontend Developer",
-    "greeting": "Hello, I'm",
-    "name": "Zhang San",
-    "description": "A passionate frontend developer dedicated to building beautiful, efficient, and user-friendly web applications. With 3 years of frontend development experience, proficient in modern frontend frameworks like React and Vue.",
-    "blog": "My Blog",
-    "github": "GitHub",
-    "experience": "✨ 3 Years Exp",
-    "fullstack": "🚀 Full Stack"
-  },
   "details": {
     "title": "Details",
     "education": {

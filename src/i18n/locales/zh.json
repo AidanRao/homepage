@@ -4,16 +4,6 @@
     "projects": "我的项目",
     "blog": "博客"
   },
-  "hero": {
-    "title": "前端开发工程师",
-    "greeting": "你好，我是",
-    "name": "张三",
-    "description": "热爱创造的前端开发工程师，致力于构建美观、高效且用户友好的网页应用。具有 3 年的前端开发经验，精通 React、Vue 等现代前端框架。",
-    "blog": "我的博客",
-    "github": "GitHub",
-    "experience": "✨ 3年经验",
-    "fullstack": "🚀 全栈开发"
-  },
   "details": {
     "title": "详细信息",
     "education": {

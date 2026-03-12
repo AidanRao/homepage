@@ -2,7 +2,6 @@ import { useState, useRef } from 'react'
 import { Github, ArrowRight, X, ExternalLink, Code, Maximize2 } from 'lucide-react'
 import { useLanguage } from './i18n/LanguageContext'
 import projectsData from './data/projects.json'
-import Footer from './components/Footer'
 import ProjectGallery from './components/ProjectGallery'
 import ProjectModal from './components/ProjectModal'
 
@@ -259,8 +258,7 @@ const ProjectsPage = ({ theme }) => {
         </div>
       )}
       
-      <Footer theme={theme} />
-
+      
       {/* Project Detail Modal */}
       {isModalOpen && selectedProject && (
         <ProjectModal 
