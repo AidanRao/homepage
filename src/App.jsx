@@ -14,8 +14,10 @@ function AppContent() {
 
   useEffect(() => {
     setMounted(true)
+
+    // Theme setup
     const savedTheme = localStorage.getItem('theme')
-    
+
     if (savedTheme) {
       setTheme(savedTheme)
       if (savedTheme === 'system') {
@@ -30,7 +32,11 @@ function AppContent() {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
       document.documentElement.classList.toggle('dark', prefersDark)
     }
-  }, [])
+
+    // SEO: Update page title
+    const hero = profileData.hero[language] || {}
+    document.title = `${profileData.name[language]} - ${hero.title || 'Portfolio'}`
+  }, [language])
 
   const toggleTheme = (newTheme) => {
     setTheme(newTheme)
@@ -54,12 +60,22 @@ function AppContent() {
 
   return (
     <Router>
-      <div className={`min-h-screen transition-colors duration-500 font-sans ${
-        theme === 'dark' 
+      <div className={`min-h-screen transition-colors duration-500 font-sans relative overflow-hidden ${
+        theme === 'dark'
           ? 'bg-zinc-950 text-zinc-100'
           : 'bg-zinc-50 text-zinc-900'
       }`}>
-        {/* 顶部导航栏 */}
+        {/* Background Decorations */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className={`absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${
+            theme === 'dark' ? 'bg-blue-600' : 'bg-blue-400'
+          }`} />
+          <div className={`absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-10 ${
+            theme === 'dark' ? 'bg-purple-600' : 'bg-purple-400'
+          }`} />
+        </div>
+
+        {/* Header */}
         <Header theme={theme} toggleTheme={toggleTheme} />
 
         <Routes>
@@ -89,10 +105,10 @@ function AppContent() {
                     href="https://github.com/AidanRao"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all hover:scale-105 ${
+                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer ${
                       theme === 'dark'
-                        ? 'bg-white text-zinc-900 hover:bg-zinc-200'
-                        : 'bg-zinc-900 text-white hover:bg-zinc-800'
+                        ? 'bg-white text-zinc-900 hover:bg-zinc-200 hover:shadow-xl hover:shadow-white/10'
+                        : 'bg-zinc-900 text-white hover:bg-zinc-800 hover:shadow-xl hover:shadow-zinc-900/20'
                     }`}
                   >
                     <Github className="w-5 h-5" />
@@ -102,10 +118,10 @@ function AppContent() {
                     href="https://blog.aidanrao.top"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all hover:scale-105 border ${
+                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer border ${
                       theme === 'dark'
-                        ? 'border-zinc-800 hover:bg-zinc-900 text-zinc-300'
-                        : 'border-zinc-200 hover:bg-zinc-100 text-zinc-700'
+                        ? 'border-zinc-800 hover:bg-zinc-900 text-zinc-300 hover:border-zinc-700 hover:shadow-lg'
+                        : 'border-zinc-200 hover:bg-zinc-100 text-zinc-700 hover:border-zinc-300 hover:shadow-lg'
                     }`}
                   >
                     <BookOpen className="w-5 h-5" />
@@ -118,8 +134,10 @@ function AppContent() {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
                 
                 {/* Experience - Spans 7 cols */}
-                <div className={`md:col-span-7 p-8 rounded-3xl transition-all hover:shadow-xl ${
-                  theme === 'dark' ? 'bg-zinc-900/50 hover:bg-zinc-900' : 'bg-white hover:bg-zinc-50 shadow-sm'
+                <div className={`md:col-span-7 p-8 rounded-3xl transition-all duration-500 hover:shadow-2xl ${
+                  theme === 'dark'
+                    ? 'bg-zinc-900/50 hover:bg-zinc-900 border border-zinc-800/50 hover:border-zinc-700'
+                    : 'bg-white hover:bg-zinc-50 shadow-lg border border-zinc-200/50'
                 }`}>
                   <div className="flex items-center gap-3 mb-8">
                     <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500">
@@ -166,10 +184,11 @@ function AppContent() {
                             <div className={`w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden flex items-center justify-center ${
                               theme === 'dark' ? 'bg-zinc-800' : 'bg-white shadow-sm border border-zinc-100'
                             }`}>
-                              <img 
-                                src={exp.logo} 
-                                alt={exp.company} 
+                              <img
+                                src={exp.logo}
+                                alt={exp.company}
                                 className="w-10 h-10 object-contain"
+                                loading="lazy"
                               />
                             </div>
                           )}
@@ -180,8 +199,10 @@ function AppContent() {
                 </div>
 
                 {/* Education - Spans 5 cols */}
-                <div className={`md:col-span-5 p-8 rounded-3xl transition-all hover:shadow-xl ${
-                  theme === 'dark' ? 'bg-zinc-900/50 hover:bg-zinc-900' : 'bg-white hover:bg-zinc-50 shadow-sm'
+                <div className={`md:col-span-5 p-8 rounded-3xl transition-all duration-500 hover:shadow-2xl ${
+                  theme === 'dark'
+                    ? 'bg-zinc-900/50 hover:bg-zinc-900 border border-zinc-800/50 hover:border-zinc-700'
+                    : 'bg-white hover:bg-zinc-50 shadow-lg border border-zinc-200/50'
                 }`}>
                   <div className="flex items-center gap-3 mb-8">
                     <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
@@ -191,32 +212,34 @@ function AppContent() {
                   </div>
                   <div className="space-y-6">
                     {education.map((edu, index) => (
-                      <div key={index} className={`p-4 rounded-2xl transition-colors ${
-                        theme === 'dark' ? 'bg-zinc-800/50 hover:bg-zinc-800' : 'bg-zinc-50 hover:bg-zinc-100'
+                      <div key={index} className={`p-4 rounded-2xl transition-all duration-300 cursor-pointer ${
+                        theme === 'dark'
+                          ? 'bg-zinc-800/50 hover:bg-zinc-800 hover:shadow-lg border border-zinc-700/30'
+                          : 'bg-zinc-50 hover:bg-zinc-100 hover:shadow-md border border-zinc-100'
                       }`}>
                         <div className="flex justify-between items-start gap-4">
                           <div className="flex-1">
                             <div className="flex justify-between items-start mb-2">
                               <div>
                                 <h3 className="font-bold">{edu.school}</h3>
-                                <div className="flex items-center gap-2 mt-1">
-                                  <p className={`text-sm font-medium ${
-                                    theme === 'dark' ? 'text-zinc-300' : 'text-zinc-700'
-                                  }`}>{edu.degree}</p>
-                                  <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${
-                                    theme === 'dark'
-                                      ? 'bg-zinc-700 text-zinc-300'
-                                      : 'bg-zinc-200 text-zinc-600'
-                                  }`}>
-                                    {edu.type}
-                                  </span>
-                                </div>
+                                <p className={`text-sm font-medium mt-1 ${
+                                  theme === 'dark' ? 'text-zinc-300' : 'text-zinc-700'
+                                }`}>{edu.degree}</p>
                               </div>
-                              <span className={`text-xs px-2 py-1 rounded-full whitespace-nowrap ${
-                                theme === 'dark' ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-700'
-                              }`}>{edu.period}</span>
+                              <div className="flex flex-col items-end gap-1">
+                                <span className={`text-xs px-2 py-1 rounded-full whitespace-nowrap ${
+                                  theme === 'dark' ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-700'
+                                }`}>{edu.period}</span>
+                                <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${
+                                  theme === 'dark'
+                                    ? 'bg-zinc-700 text-zinc-300'
+                                    : 'bg-zinc-200 text-zinc-600'
+                                }`}>
+                                  {edu.type}
+                                </span>
+                              </div>
                             </div>
-                            
+
                             {edu.college && (
                               <p className={`text-xs mt-1 ${
                                 theme === 'dark' ? 'text-zinc-500' : 'text-zinc-500'
@@ -227,10 +250,11 @@ function AppContent() {
                             <div className={`w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden flex items-center justify-center ${
                               theme === 'dark' ? 'bg-zinc-800' : 'bg-white shadow-sm border border-zinc-100'
                             }`}>
-                              <img 
-                                src={edu.logo} 
-                                alt={edu.school} 
+                              <img
+                                src={edu.logo}
+                                alt={edu.school}
                                 className="w-10 h-10 object-contain"
+                                loading="lazy"
                               />
                             </div>
                           )}
@@ -240,9 +264,11 @@ function AppContent() {
                   </div>
                 </div>
                 
-                {/* About / Bio - Spans full width on mobile, 8 cols on desktop */}
-                <div className={`md:col-span-8 p-8 rounded-3xl transition-all hover:shadow-xl ${
-                  theme === 'dark' ? 'bg-zinc-900/50 hover:bg-zinc-900' : 'bg-white hover:bg-zinc-50 shadow-sm'
+                {/* About / Bio - Spans full width on mobile, 7 cols on desktop */}
+                <div className={`md:col-span-7 p-8 rounded-3xl transition-all duration-500 hover:shadow-2xl ${
+                  theme === 'dark'
+                    ? 'bg-zinc-900/50 hover:bg-zinc-900 border border-zinc-800/50 hover:border-zinc-700'
+                    : 'bg-white hover:bg-zinc-50 shadow-lg border border-zinc-200/50'
                 }`}>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
@@ -254,10 +280,10 @@ function AppContent() {
                     {researchTopics.map((topic, index) => (
                       <span
                         key={index}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
                           theme === 'dark'
-                            ? 'bg-zinc-800 text-zinc-300 hover:text-blue-400'
-                            : 'bg-zinc-100 text-zinc-700 hover:text-blue-600'
+                            ? 'bg-zinc-800 text-zinc-300 hover:text-blue-400 hover:bg-zinc-700 hover:shadow-md'
+                            : 'bg-zinc-100 text-zinc-700 hover:text-blue-600 hover:bg-zinc-200 hover:shadow-md'
                         }`}
                       >
                         {topic}
@@ -266,9 +292,11 @@ function AppContent() {
                   </div>
                 </div>
 
-                {/* Connect / Contact - Spans 4 cols */}
-                <div className={`md:col-span-4 p-8 rounded-3xl flex flex-col justify-between transition-all hover:shadow-xl ${
-                  theme === 'dark' ? 'bg-zinc-900/50 hover:bg-zinc-900' : 'bg-white hover:bg-zinc-50 shadow-sm'
+                {/* Connect / Contact - Spans 5 cols */}
+                <div className={`md:col-span-5 p-8 rounded-3xl flex flex-col justify-between transition-all duration-500 hover:shadow-2xl ${
+                  theme === 'dark'
+                    ? 'bg-zinc-900/50 hover:bg-zinc-900 border border-zinc-800/50 hover:border-zinc-700'
+                    : 'bg-white hover:bg-zinc-50 shadow-lg border border-zinc-200/50'
                 }`}>
                   <div>
                     <h2 className="text-2xl font-bold mb-2">Connect</h2>
@@ -277,17 +305,30 @@ function AppContent() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                     <a href="mailto:chenxuanrao.work@gmail.com" className="flex items-center gap-3 hover:text-blue-500 transition-colors">
-                        <div className={`p-2 rounded-full ${theme === 'dark' ? 'bg-zinc-800' : 'bg-zinc-100'}`}>
+                     <a
+                       href="mailto:chenxuanrao.work@gmail.com"
+                       className={`flex items-center gap-3 transition-all duration-300 cursor-pointer group ${
+                         theme === 'dark' ? 'hover:text-blue-400' : 'hover:text-blue-600'
+                       }`}
+                     >
+                        <div className={`p-2 rounded-full transition-all duration-300 ${
+                          theme === 'dark'
+                            ? 'bg-zinc-800 group-hover:bg-blue-500/20'
+                            : 'bg-zinc-100 group-hover:bg-blue-50'
+                        }`}>
                           <Mail className="w-4 h-4" />
                         </div>
                         <span className="font-medium">Email Me</span>
                      </a>
                      <div className="flex items-center gap-3">
-                        <div className={`p-2 rounded-full ${theme === 'dark' ? 'bg-zinc-800' : 'bg-zinc-100'}`}>
+                        <div className={`p-2 rounded-full ${
+                          theme === 'dark' ? 'bg-zinc-800' : 'bg-zinc-100'
+                        }`}>
                           <MapPin className="w-4 h-4" />
                         </div>
-                        <span className={`font-medium ${theme === 'dark' ? 'text-zinc-300' : 'text-zinc-700'}`}>Beijing</span>
+                        <span className={`font-medium ${
+                          theme === 'dark' ? 'text-zinc-300' : 'text-zinc-700'
+                        }`}>Beijing</span>
                      </div>
                   </div>
                 </div>
