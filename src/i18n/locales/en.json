@@ -33,7 +33,8 @@
   },
   "footer": {
     "copyright": "© 2026 Aidan Rao. All rights reserved.",
-    "language": "Language"
+    "language": "Language",
+    "sso": "SSO"
   },
   "theme": {
     "light": "Light Mode",
