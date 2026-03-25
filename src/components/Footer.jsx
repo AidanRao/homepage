@@ -19,40 +19,46 @@ const Footer = ({ theme }) => {
             </p>
           </div>
 
-          {/* Links - 2x3 Grid Layout */}
-          <div className="flex flex-col gap-1.5 items-center md:items-start">
-            <div className="flex items-center gap-6">
-              <a
-                href="/"
-                className={`text-sm font-medium transition-all duration-300 hover:underline cursor-pointer whitespace-nowrap ${
-                  theme === 'dark' ? 'hover:text-blue-400' : 'hover:text-blue-600'
-                }`}
-              >
-                Home
-              </a>
-              <a
-                href="https://joinup-admin.aidanrao.top"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-sm font-medium transition-all duration-300 hover:underline cursor-pointer whitespace-nowrap ${
-                  theme === 'dark' ? 'hover:text-blue-400' : 'hover:text-blue-600'
-                }`}
-              >
-                Joinup
-              </a>
-            </div>
-            <div className="flex items-center gap-6">
-              <a
-                href="https://blog.aidanrao.top"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-sm font-medium transition-all duration-300 hover:underline cursor-pointer whitespace-nowrap ${
-                  theme === 'dark' ? 'hover:text-blue-400' : 'hover:text-blue-600'
-                }`}
-              >
-                Blog
-              </a>
-            </div>
+          {/* Links - Grid Layout */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 items-center">
+            <a
+              href="/"
+              className={`text-sm font-medium transition-all duration-300 hover:underline cursor-pointer whitespace-nowrap ${
+                theme === 'dark' ? 'hover:text-blue-400' : 'hover:text-blue-600'
+              }`}
+            >
+              Home
+            </a>
+            <a
+              href="https://joinup-admin.aidanrao.top"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-sm font-medium transition-all duration-300 hover:underline cursor-pointer whitespace-nowrap ${
+                theme === 'dark' ? 'hover:text-blue-400' : 'hover:text-blue-600'
+              }`}
+            >
+              Joinup
+            </a>
+            <a
+              href="https://blog.aidanrao.top"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-sm font-medium transition-all duration-300 hover:underline cursor-pointer whitespace-nowrap ${
+                theme === 'dark' ? 'hover:text-blue-400' : 'hover:text-blue-600'
+              }`}
+            >
+              Blog
+            </a>
+            <a
+              href="https://cv.aidanrao.top"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-sm font-medium transition-all duration-300 hover:underline cursor-pointer whitespace-nowrap ${
+                theme === 'dark' ? 'hover:text-blue-400' : 'hover:text-blue-600'
+              }`}
+            >
+              {t('footer.cv')}
+            </a>
             <a
               href="https://sso.aidanrao.top"
               target="_blank"

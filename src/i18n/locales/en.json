@@ -34,7 +34,8 @@
   "footer": {
     "copyright": "© 2026 Aidan Rao. All rights reserved.",
     "language": "Language",
-    "sso": "SSO"
+    "sso": "SSO",
+    "cv": "Smart CV"
   },
   "theme": {
     "light": "Light Mode",
