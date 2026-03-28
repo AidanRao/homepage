@@ -69,6 +69,16 @@ const Footer = ({ theme }) => {
             >
               {t('footer.sso')}
             </a>
+            <a
+              href="https://hanamikoji.aidanrao.top"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-sm font-medium transition-all duration-300 hover:underline cursor-pointer whitespace-nowrap ${
+                theme === 'dark' ? 'hover:text-blue-400' : 'hover:text-blue-600'
+              }`}
+            >
+              {t('footer.hanamikoji')}
+            </a>
           </div>
 
           {/* Language Switcher - Fixed Width */}
